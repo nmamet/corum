@@ -20,3 +20,8 @@ export const fakeAllUsersInfo = [
     email: "bobthebuilder3@bob.com",
   },
 ] as const satisfies UserInfo[];
+
+export const fakeAllUsers = fakeAllUsersInfo.map((userInfo) => ({
+  ...userInfo,
+  password: "hash",
+}));

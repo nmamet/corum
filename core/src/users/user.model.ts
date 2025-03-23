@@ -4,5 +4,3 @@ export type UserInfo = {
   lastName: string;
   birthDate: number;
 };
-
-console.log("bob");

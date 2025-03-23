@@ -1,14 +1,11 @@
+import { getConnection } from "./connection.ts";
+
 import type { UserInfo } from "@/core/users/user.model";
 
-function getAllUsersInfo(): Promise<UserInfo[]> {
-  return Promise.resolve([
-    {
-      firstName: "Bob",
-      lastName: "the Builder",
-      birthDate: 0,
-      email: "bobthebuilder@bob.com",
-    },
-  ]);
+async function getAllUsersInfo(): Promise<UserInfo[]> {
+  return await getConnection()
+    .connection.select("firstName", "lastName", "email", "birthDate")
+    .from("user");
 }
 
 export default {

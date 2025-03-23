@@ -1,6 +1,12 @@
 import server from "./server.ts";
 
-server.listen({ port: 3000 }, function (err) {
+const DEFAULT_PORT = "3052";
+const PORT: number = parseInt(
+  process.env.CORUM_SERVER_PORT ?? DEFAULT_PORT,
+  10,
+);
+
+server.listen({ port: PORT }, function (err) {
   if (err) {
     server.log.error(err);
     process.exit(1);
