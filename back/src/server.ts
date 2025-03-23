@@ -2,6 +2,7 @@ import helmet from "@fastify/helmet";
 import Fastify from "fastify";
 import { ZodError } from "zod";
 
+import { DuplicateResourceError } from "./errors.ts";
 import { createUser } from "./users/domainLogic.ts";
 import userPersistence from "./users/persistence.ts";
 
@@ -16,6 +17,8 @@ server.setErrorHandler((error, _request, reply) => {
     } else {
       reply.status(400).send(error);
     }
+  } else if (error instanceof DuplicateResourceError) {
+    reply.status(409).send(error);
   } else if (isProd()) {
     reply.status(500).send("An unknown error happened");
   } else {
