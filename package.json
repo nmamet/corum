@@ -3,8 +3,12 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "init": "./scripts/init.sh",
     "lint": "eslint .",
-    "prepare": "husky"
+    "prepare": "husky",
+    "run:local": "npm run run:local --workspace back",
+    "run:prod": "npm run run:prod --workspace back",
+    "build": "npm run build --workspace back"
   },
   "author": "",
   "license": "ISC",
@@ -12,7 +16,8 @@
   "workspaces": [
     "core",
     "back",
-    "front"
+    "front",
+    "database"
   ],
   "devDependencies": {
     "eslint": "^9.23.0",
@@ -25,9 +30,5 @@
     "husky": "^9.1.7",
     "prettier": "^3.5.3",
     "typescript-eslint": "^8.27.0"
-  },
-  "dependencies": {
-    "knex": "^3.1.0",
-    "sqlite3": "^5.1.7"
   }
 }

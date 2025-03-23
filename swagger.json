@@ -1,0 +1,114 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API Utilisateurs",
+    "version": "1.0.0",
+    "description": "API pour la gestion des utilisateurs"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3052"
+    }
+  ],
+  "paths": {
+    "/users": {
+      "get": {
+        "summary": "Récupérer tous les utilisateurs",
+        "responses": {
+          "200": {
+            "description": "Liste des informations des utilisateurs",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UserInfo"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Créer un nouvel utilisateur",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/User"
+              },
+              "examples": {
+                "exempleUtilisateur": {
+                  "value": {
+                    "email": "exemple@domaine.com",
+                    "firstName": "John",
+                    "lastName": "Doe",
+                    "birthDate": 946684800000,
+                    "password": "MotDePasse2&"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Informations de l'utilisateur créé",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserInfo"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erreur de validation des données"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "UserInfo": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "email"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "birthDate": {
+            "type": "integer",
+            "format": "int64"
+          }
+        },
+        "required": ["email", "firstName", "lastName", "birthDate"]
+      },
+      "User": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/UserInfo"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "password": {
+                "type": "string"
+              }
+            },
+            "required": ["password"]
+          }
+        ]
+      }
+    }
+  }
+}
