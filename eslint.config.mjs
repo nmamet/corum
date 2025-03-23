@@ -4,6 +4,7 @@ import eslint from "@eslint/js";
 import * as tseslint from "typescript-eslint";
 import reactPlugin from "eslint-plugin-react";
 import hooksPlugin from "eslint-plugin-react-hooks";
+import nodePlugin from "eslint-plugin-node";
 import globals from "globals";
 
 export default [
@@ -25,6 +26,7 @@ export default [
     plugins: {
       "@typescript-eslint": tseslint.plugin,
       import: eslintPluginImport,
+      node: nodePlugin,
     },
     rules: {
       ...tseslint.configs.recommendedTypeChecked
@@ -44,6 +46,7 @@ export default [
       "no-unneeded-ternary": "error",
       "no-unused-expressions": "warn",
       "no-warning-comments": "error",
+      "@typescript-eslint/consistent-type-imports": "error",
       "@typescript-eslint/no-magic-numbers": [
         "warn",
         { ignore: [0, 1, 2, -1], ignoreEnums: true },
@@ -145,11 +148,17 @@ export default [
     },
   },
   {
-    files: ["**/back/**/*.{js,mjs,cjs,ts,tsx}"],
+    files: ["**/back/**/*.{js,mjs,cjs,ts}"],
     languageOptions: {
       globals: {
         ...globals.node,
       },
+    },
+  },
+  {
+    files: ["**/back/**/*.ts"],
+    rules: {
+      "node/file-extension-in-import": ["error", "always"],
     },
   },
   {

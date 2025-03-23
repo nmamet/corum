@@ -4,7 +4,7 @@
     "module": "esnext",
     "lib": ["esnext"],
     "outDir": "./dist/",
-    "emitDeclarationOnly": true,
+    "noEmit": false,
     "strict": true,
     "noImplicitAny": true,
     "strictNullChecks": true,
@@ -24,14 +24,8 @@
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
     "target": "ES2022",
-    "declarationMap": true,
-    "erasableSyntaxOnly": true,
-    "paths": {
-      "@/core/*": ["../core/src/*"]
-    },
-    "allowImportingTsExtensions": true
+    "erasableSyntaxOnly": true
   },
   "exclude": ["node_modules", "dist"],
-  "include": ["./**/*.ts"],
-  "references": [{ "path": "../core" }]
+  "include": ["./**/*.ts"]
 }

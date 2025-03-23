@@ -1,17 +1,14 @@
+import helmet from "@fastify/helmet";
 import Fastify from "fastify";
 
-const fastify = Fastify({
-  logger: true, // TODO remove logger
+import userPersistence from "./users/persistence.ts";
+
+const server = Fastify();
+
+server.register(helmet);
+
+server.get("/users", async function (_request, reply) {
+  reply.send(await userPersistence.getAllUsersInfo());
 });
 
-// Declare a route
-fastify.get("/", function (_request, reply) {
-  reply.send({ hello: "world" });
-});
-
-fastify.listen({ port: 3000 }, function (err) {
-  if (err) {
-    fastify.log.error(err);
-    process.exit(1);
-  }
-});
+export default server;
