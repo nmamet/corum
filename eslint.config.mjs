@@ -70,18 +70,6 @@ export default [
         },
       ],
       "@typescript-eslint/type-annotation-spacing": "error",
-      "@typescript-eslint/typedef": [
-        "error",
-        {
-          arrayDestructuring: false,
-          arrowParameter: true,
-          memberVariableDeclaration: true,
-          objectDestructuring: false,
-          parameter: true,
-          propertyDeclaration: true,
-          variableDeclaration: false,
-        },
-      ],
       "@typescript-eslint/explicit-function-return-type": [
         "error",
         {
