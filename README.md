@@ -5,7 +5,7 @@
 This project needs node 22  
 npm run init  
 npm run run:local  
-npm run run:dev
+npm run run:prod
 
 ## Endpoints
 
